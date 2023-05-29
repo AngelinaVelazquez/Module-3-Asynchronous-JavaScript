@@ -1,0 +1,10 @@
+Sequencing animation Notes
+
+  In this section I will learn how to update a page to play a series of animations in a sequence using promise-based APIs
+
+  The instructions for this assignment asked to update the images on the page in three different methods. 
+    1. First method is the finished then callback hell
+    2. Second method used to animate all the images was the promise chain method
+    3. The third and final method is the async and await.
+    
+     

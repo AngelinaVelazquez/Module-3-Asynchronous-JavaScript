@@ -1,0 +1,100 @@
+Promises in Asynchronous Programming
+
+  A promise is an object that is returned by an asynchronous function. 
+    operations are not finished when promises are returned. The promise will give a method for the success or failure of the operation being undertaken. 
+  
+  Promise-based API
+    - start by calling a function
+    - a Promise object is returned
+    - Add handlers to the Promise object
+    - Handlers are executed depending on a successful or failed promise
+
+    fetch() API 
+      - is a modern promise-base replacement for XMLHttpRequest
+
+      1. fetch() API and assign return value to fetchPromise
+      2.Output is Promise{ <state>: "pending"}
+        - this lets us know that a Promise object called state has a value "pending" this means that the fetch operation is not complete
+      3.A handler is passed into the Promise's then() method. 
+        - the promise will call the handler if the fetch operation succeeds. A Response object is passed (this contains the server's response).
+      4.A message logs stating that we have started a request
+      
+      Final output looks like --> Promise { <state>: "pending"}
+                                  started request...
+                                  Received response: 200
+
+Changing promises
+
+  to get a response data you need to call another function. 
+  If you want the data in JSON format you would call the json() method for the Response object. 
+    json() is also asynchronous
+    therefore we will be calling two asynchronous functions the fetch() and json(). 
+
+Catching errors
+
+  Examples of errors from the fetch() API
+    - no network connectivity
+    - no URL or is malformed
+
+Error handling in nested callbacks can be difficult
+
+The asynchronous operation fails then the handler will be passed to the catch() method. 
+
+catch() at the end of the promise chain will be called if the asynchronous function calls fail. 
+
+I tried running the example of the fetch() code to see an error handler using catch(). 
+  - the error logged in the console were 
+     * Fetch API cannot load bad-scheme://mdn.github.io/learning-area/javascript/apis/fetching-data/can-store/products.json. URL scheme "bad-scheme" is not supported.
+     * Could not get products: TypeError: Failed to fetch
+
+Promise terminology
+  3 promise states:
+   1. pending
+   2. fulfilled
+   3. rejected
+
+   1. - promise is created
+      - function has not succeeded or failed yet
+      - request is being made
+
+   2. - asynchronous function succeeded
+      - handler then() is called
+
+   3. - asynchronous function failed
+      - promise is rejected
+      - handler catch() is called 
+
+The API determines the meaning of succeeded or failed
+
+Settled --> term tht covers both fulfilled and rejected
+
+"A promise is resolved if it is settled, or has been "locked in" to follow... another promise"
+
+Combining multiple promises
+
+Promise.all()
+You can start all promises together when they do not depend on each other and be notified of their status when fulfilled by using the method Promise.all().
+    - this method is fulfilled when all of the promises in the array have been fulfilled and the then() handle is called in the order of all()
+    - If the promises are rejected, the catch() handler is called giving the error. 
+    - when all fetch() request succeed you will see a log of the status for each promise
+      * except if one of the request fails then you will see a error logged as failure.
+
+Promise.any()
+If you need any one of the promises in a set to be fulfilled but it does not matter which one then you use the Promise.all() method. 
+  - You will get a fulfilled result as soon as any of the promises in the array is fulfilled 
+  - You will get a rejected result if all of the promises in the array are rejected
+
+Async & Await
+  ..."Adding async at the start of a function makes it an async function"...
+- the await keyword is used inside the async function before calling a function 
+  * the code will wait until the promise is settled
+  * when the promise is fulfilled you will se a response or an error
+- when using this form of code you can use async functions that look like synchronous. 
+- await ca only be used inside an async function
+  * except when you are inside a JavaScript module
+
+Good things about using promises
+  - easier asynchronous operations
+    * no nested callback
+    * error handling similar to synchronous statement try...catch
+    * async await does not require promise chains and still gives you a series of consecutive async function calls

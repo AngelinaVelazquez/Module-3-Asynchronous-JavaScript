@@ -1,0 +1,20 @@
+Asynchronous programming
+  - Is used to have other task run and get work done without having to wait for web browsers for example when using APIs
+  - running long synchronous functions takes a long time
+  - also programs can be unresponsive and do not let the user do any other task without finishing the function that is running. 
+  - it should let users know that an operation has been completed
+
+Event handlers are a form of asynchronous programming
+  - a function will be called eventually
+  - if the event does take place the caller is notified of the result
+
+Early APIs used event handlers example: XMLHttpRequest API
+
+Callbacks are an event handler. its a function passed into another function. Here the callback is called at a set time. 
+
+Callbacks pass in functions to another functions. 
+  "the parent function executes the function that we pass in" Zach Gollwitzer
+
+nest callbacks make it hard to handle errors. 
+
+Modern APIs do not use callbacks instead they use promises. 

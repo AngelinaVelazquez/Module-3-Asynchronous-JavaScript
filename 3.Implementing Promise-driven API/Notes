@@ -1,0 +1,39 @@
+Notes on Implementing Promise-driven API
+
+  - wrap an asynchronous operation that uses
+    * events
+    * callbacks
+    * message-passing model
+  - Promise object operation succeeds or fails
+
+alarm() API
+- this is an example of a promise-based alarm API
+  * arguments taken in
+    - name of person to wake up
+    - a delay in milliseconds before waking up person
+    - then a "Wake up" message is send along with the name of the person
+
+setTimeout()
+  - takes in as arguments 
+    * a callback function
+    * a delay (milliseconds)
+
+calling this function will start a timer for the set delay
+  - once the delay reaches the end it will call the setTimeout()
+
+Promise() constructor
+- will be fulfilled when timer expires
+- passes a "Wake up!" message into the then() handler
+- the executor function is the argument of the Promise() constructor
+  * takes two arguments (functions)
+    1. resolve -- called when the asynchronous function succeeds
+    2. reject -- called when hte asynchronous function fails throws an error
+     example when delay is negative
+
+Using the alarm() API 
+  1. call alarm()
+  2. promise is returned
+  3. promise calls then() and catch() handlers
+  - Can use promise chaining, Promise.all(), and async and await
+
+

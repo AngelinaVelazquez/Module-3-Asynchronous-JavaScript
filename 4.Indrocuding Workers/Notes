@@ -1,0 +1,31 @@
+Notes on Introducing Workers
+  After taking this notes I will understand how to use web Workers. 
+
+  What is a thread?
+    a thread is a sequence of instructions followed by a program
+
+    a single thread program will only do one thing at a time
+
+With workers you can run tasks in different threads
+
+There is a caveat to multithreaded code --> "you never know when your thread will be suspended and the other thread will get a chance to run"
+
+variables that are the same may cause bugs (they can be hard to find) in multithreaded code when a variable changes unexpectedly. 
+
+As a way to prevent such problems on the web the main code and the worker code do not have access to each other's variables by being run in separate. Workers can not access the DOM. 
+
+The three kinds of workers are:
+  1. dedicated workers
+  2. shared workers
+  3. service workers
+
+Dedicated worker is used by a single script instance
+
+Shared workers are shared by several different scripts and run in different windows
+
+service workers are like proxy servers. They cache resources for web applications to work if user is offline. Used in Progressive Web Apps. 
+
+Conclusion
+  - Web workers enable web apps to offload tasks to separate threads. 
+  - Main and Worker threads do not share variables directly
+  - Main and Worker threads communicate by sending message events
